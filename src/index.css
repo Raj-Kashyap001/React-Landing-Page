@@ -1,0 +1,368 @@
+@font-face {
+  font-family: Poppins;
+  src: url("fonts/Poppins-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Poppins;
+  src: url("fonts/Poppins-Medium.ttf");
+  font-weight: 500;
+}
+
+/********************************************************* 
+          VARIABLES
+**********************************************************/
+
+:root {
+  --clr-text: #f1f1f1;
+  --clr-bg: #060417;
+  --clr-purple-1: #a993fe;
+  --clr-purple-3: #7c66e3;
+  --clr-purple-2: #7e61e7;
+  --clr-purple-4: #6852ba;
+  --clr-purple-5: #342864;
+  --gradient: linear-gradient(
+    90deg,
+    var(--clr-purple-1) 0%,
+    var(--clr-purple-2) 100%
+  );
+}
+
+/********************************************************* 
+          BASE STYLES
+**********************************************************/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: Poppins, sans-serif;
+}
+
+section {
+  max-width: 1300px;
+  padding-inline: 2rem;
+  margin: 0 auto;
+}
+
+section .section-title {
+  font-size: clamp(24px, 1.8vw, 48px);
+  font-weight: 500;
+  margin-block: 2rem;
+}
+
+/********************************************************* 
+          NAVBAR
+**********************************************************/
+
+.navbar {
+  --nav-height: 3.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 3.5rem;
+  padding-inline: 4rem;
+  padding-block: 2rem;
+  display: flex;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(40px);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo {
+  width: 12rem;
+  height: fit-content;
+  filter: invert(100%);
+}
+
+.nav-item {
+  position: relative;
+  display: inline-block;
+  margin-block: 1.5em;
+  margin-left: 2em;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  background-image: var(--gradient);
+  width: 0px;
+  height: 3px;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateX(-1.5rem);
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover::before {
+  width: 100%;
+  opacity: 1;
+  transform: translateX(0);
+}
+.nav-item a {
+  cursor: pointer;
+  color: var(--clr-text);
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar .hire-btn:is(:hover, :focus-within),
+.toggle-nav-btn:hover {
+  background: transparent;
+  color: var(--clr-purple-1);
+  outline-color: var(--clr-purple-1);
+}
+
+.toggle-nav-btn {
+  display: none;
+  cursor: pointer;
+  background: var(--gradient);
+  color: var(--clr-text);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 2em;
+  padding: 0.5rem 1rem;
+  outline: 2px solid transparent;
+  border-radius: 0.2rem;
+  z-index: 99;
+}
+
+/********************************************************* 
+          HERO SECTION
+**********************************************************/
+#hero {
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-block: 2rem;
+  gap: 10%;
+  & > div {
+    flex: 1;
+  }
+}
+
+#hero::before,
+#hero::after {
+  content: "";
+  position: absolute;
+  filter: blur(285px);
+  width: 23%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: -1;
+  background-color: var(--clr-purple-3);
+}
+
+#hero::before {
+  top: 10%;
+  left: 5%;
+}
+
+#hero::after {
+  bottom: 10%;
+  right: 5%;
+}
+
+.hero-content {
+  h2 {
+    font-size: clamp(30px, 4.8vw, 98px);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    width: 80%;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+}
+
+.get-resume-btn {
+  cursor: pointer;
+  background-image: var(--gradient);
+  color: var(--clr-text);
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.2rem;
+  outline: 2px solid transparent;
+}
+
+.hero-image .hero {
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.hero-image .tech-stack-icons {
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  margin-block: 2rem;
+  margin-inline: 2rem;
+}
+
+.tech-stack-icons span {
+  width: clamp(40px, 14vw, 100px);
+  border: 2px solid var(--clr-purple-5);
+  padding: 1rem;
+  border-radius: 24px;
+  aspect-ratio: 1;
+
+  &:first-child {
+    position: absolute;
+    top: -7rem;
+    left: -5rem;
+  }
+}
+
+.tech-icon {
+  transition: all 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: translateY(-0.5rem);
+}
+
+/********************************************************* 
+          SKILLS SECTION
+**********************************************************/
+
+/********************************************************* 
+          MEDIA QUERIES
+**********************************************************/
+
+@media (width <= 900px) {
+  .navbar {
+    padding-inline: 2rem;
+  }
+  .nav-list {
+    position: absolute;
+    display: flex;
+    background: var(--clr-purple-5);
+    flex-shrink: 1;
+    padding: 0.5rem 1rem;
+    flex-direction: column;
+    width: min(300px, 100vw);
+    height: 100svh;
+    top: 0;
+    right: -100%;
+    transition: all 0.3s ease;
+  }
+
+  .nav-list.active {
+    right: 0;
+  }
+
+  .toggle-nav-btn {
+    display: block;
+  }
+
+  #hero {
+    flex-direction: column-reverse;
+  }
+
+  .hero-content {
+    p,
+    h2 {
+      width: 100%;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+
+  .tech-stack-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tech-stack-icons span:first-child {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+}
+
+@media (width <= 720px) {
+  #skills .skills-content {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 150px;
+  }
+
+  .card-img {
+    width: 48px;
+  }
+}
